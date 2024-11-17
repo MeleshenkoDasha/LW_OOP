@@ -1,10 +1,10 @@
 package lab_work_3.functions;
 
 /**
- * Класс FunctionPoint_3.
+ * Класс FunctionPoint.
  * Объекты данного класса описывают одну точку табулированной функции
  * */
-public class FunctionPoint_3 {
+public class FunctionPoint {
 
     /**
      * Поскольку точка функции описывается двумя координатами:
@@ -19,9 +19,9 @@ public class FunctionPoint_3 {
     private double y;
 
     /**
-     * Опишем методы доступа и модификации объектов класса FunctionPoint_3
-     * Методами доступа являются методы get. Они позволяют получить значения атрибутов класса FunctionPoint_3, входные параметры отсутствуют
-     * Методы set - методы модификации. Они позволяют изменить значения атрибутов класса FunctionPoint_3.
+     * Опишем методы доступа и модификации объектов класса FunctionPoint
+     * Методами доступа являются методы get. Они позволяют получить значения атрибутов класса FunctionPoint, входные параметры отсутствуют
+     * Методы set - методы модификации. Они позволяют изменить значения атрибутов класса FunctionPoint.
      * На вход set-методы принимают значения, которые необходимо присвоить атрибуту объекта.
      * */
 
@@ -50,33 +50,33 @@ public class FunctionPoint_3 {
     }
 
     /**
-     * Опишем конструкторы класса FunctionPoint_3
+     * Опишем конструкторы класса FunctionPoint
      * */
 
     /**
-     *  Конструктор FunctionPoint_3(double x, double y) осуществляет создание и инициализацию объекта типа FunctionPoint_3.
+     *  Конструктор FunctionPoint(double x, double y) осуществляет создание и инициализацию объекта типа FunctionPoint.
      *  Инициализацию объекта производим входными значениями из конструктора, для установки значения используем ранее описанные set-методы
      * */
-    public FunctionPoint_3(double x, double y){
+    public FunctionPoint(double x, double y){
         setX(x);
         setY(y);
     }
 
     /**
-     *  Конструктор FunctionPoint_3(FunctionPoint_3 point) осуществляет создание и инициализацию объекта типа FunctionPoint_3.
+     *  Конструктор FunctionPoint(FunctionPoint point) осуществляет создание и инициализацию объекта типа FunctionPoint.
      *  Инициализацию объекта производим используя данные входного объекта.
      *  Для этого вначале получаем значения при помощи get-методов, а далее инициализируем наш объект используя set-методы
      * */
-    public FunctionPoint_3(FunctionPoint_3 point){
+    public FunctionPoint(FunctionPoint point){
         setX(point.getX());
         setY(point.getY());
     }
 
     /**
-     *  Конструктор FunctionPoint_3() осуществляет создание и инициализацию объекта типа FunctionPoint_3.
+     *  Конструктор FunctionPoint() осуществляет создание и инициализацию объекта типа FunctionPoint.
      *  Инициализацию объекта производим используя нулевые значения.
      * */
-    public FunctionPoint_3(){
+    public FunctionPoint(){
         setX(0);
         setY(0);
     }
@@ -84,7 +84,7 @@ public class FunctionPoint_3 {
     /**
      * Расчет значения функции по прямой
      * */
-    public static double getValueOnLine(FunctionPoint_3 left, FunctionPoint_3 right, double x){
+    public static double getValueOnLine(FunctionPoint left, FunctionPoint right, double x){
         if(Double.compare(x, left.getX()) == -1 || Double.compare(x, right.getX()) ==1)
         {
             return Double.NaN;

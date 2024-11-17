@@ -1,4 +1,4 @@
-/*import lab_work_2.functions.FunctionPoint;
+package lab_work_4;/*import lab_work_2.functions.FunctionPoint;
 import lab_work_2.functions.TabulatedFunction;
 
 import lab_work_3.functions.FunctionPoint_3;
@@ -10,7 +10,7 @@ import lab_work_4.functions.basic.*;
 
 import java.io.*;
 
-public class Main {
+public class Main_lab_work_4 {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         System.out.println("Задание 8");

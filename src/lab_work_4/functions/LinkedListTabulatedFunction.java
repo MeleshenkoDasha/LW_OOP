@@ -42,11 +42,11 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
         // Заполним функцию следующим образом
         double step = (rightX - leftX) / (pointsCount - 1);
         for (int i = 0; i < pointsCount - 1; i++) {
-            addNodeToTail().point = new FunctionPoint_4(leftX, 0);
+            addNodeToTail().point = new FunctionPoint(leftX, 0);
             leftX += step;
         }
         // Добавим конечный элемент
-        addNodeToTail().point = new FunctionPoint_4(rightX, 0);
+        addNodeToTail().point = new FunctionPoint(rightX, 0);
     }
 
     /**
@@ -74,18 +74,18 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
         // Заполним функцию следующим образом
         double step = (rightX - leftX) / (pointsCount - 1);
         for (int i = 0; i < pointsCount - 1; i++) {
-            addNodeToTail().point = new FunctionPoint_4(leftX, values[i]);
+            addNodeToTail().point = new FunctionPoint(leftX, values[i]);
             leftX += step;
         }
         // Добавим конечный элемент
-        addNodeToTail().point = new FunctionPoint_4(rightX, values[pointsCount - 1]);
+        addNodeToTail().point = new FunctionPoint(rightX, values[pointsCount - 1]);
     }
 
     /**
-     * LinkedListTabulatedFunction(FunctionPoint_4[] points)
+     * LinkedListTabulatedFunction(FunctionPoint[] points)
      * Конструктор, получающий сразу все точки функции в виде массива объектов типа FunctionPoint
      * */
-    public  LinkedListTabulatedFunction(FunctionPoint_4[] points){
+    public  LinkedListTabulatedFunction(FunctionPoint[] points){
         // Определяем количесто точек функции.
         this.pointsCount=points.length;
         // Проверяем, что точек достаточно для работы
@@ -103,9 +103,9 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
                 throw new IllegalArgumentException("Правый аргумент функции("+points[i+1].getX()+") должен быть больше левого("+points[i].getX()+")");
             }
             // если все хорошо то добавляем элемент в список
-            addNodeToTail().point = new FunctionPoint_4(points[i]);
+            addNodeToTail().point = new FunctionPoint(points[i]);
         }
-        addNodeToTail().point=new FunctionPoint_4(points[pointsCount-1]);
+        addNodeToTail().point=new FunctionPoint(points[pointsCount-1]);
     }
 
     /**
@@ -204,7 +204,7 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
             FunctionNode current = head.next;
             for (int i = 0; i < pointsCount - 1; i++) {
                 if (Double.compare(x, current.point.getX()) >= 0 && Double.compare(x, current.next.point.getX()) <= 0) {
-                    return FunctionPoint_4.getValueOnLine(current.point, current.next.point, x);
+                    return FunctionPoint.getValueOnLine(current.point, current.next.point, x);
                 }
                 current = current.next;
             }
@@ -215,11 +215,11 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
     /**
      * Метод возвращает ссылку на объект, описывающий точку, имеющую указанный номер.
      * */
-    public FunctionPoint_4 getPoint(int index) {
+    public FunctionPoint getPoint(int index) {
         if (index < 0 || index >= pointsCount) {
             throw new FunctionPointIndexOutOfBoundsException("Такого элемента не существует!", index);
         }
-        return new FunctionPoint_4(getNodeByIndex(index).point);
+        return new FunctionPoint(getNodeByIndex(index).point);
     }
 
     /**
@@ -245,7 +245,7 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
     /**
      * Метод заменяет указанную точку табулированной функции на заданную
      * */
-    public void setPoint(int index, FunctionPoint_4 point) throws InappropriateFunctionPointException {
+    public void setPoint(int index, FunctionPoint point) throws InappropriateFunctionPointException {
         if (index < 0 || index >= pointsCount) {
             throw new FunctionPointIndexOutOfBoundsException("Такого элемента не существует!", index);
         }
@@ -297,7 +297,7 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
     /**
      * Метод добавляет новую точку табулированной функции
      * */
-    public void addPoint(FunctionPoint_4 point) throws InappropriateFunctionPointException {
+    public void addPoint(FunctionPoint point) throws InappropriateFunctionPointException {
         if (Double.compare(point.getX(), getLeftDomainBorder()) == -1 ) {
             addNodeByIndex(0).point = point;
             pointsCount++;
@@ -349,7 +349,7 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
 
 /**
  * Опишем класс элементов списка FunctionNode
- * Класс содержит информационное поле для хранения данных типа FunctionPoint_4
+ * Класс содержит информационное поле для хранения данных типа FunctionPoint
  * А также поля для хранения ссылок на предыдущий и следующий элемент.
  * Выберите и обоснуйте место описания класса и его видимость.
  * Также выберите и обоснуйте реализацию инкапсуляции в этом классе
@@ -359,12 +359,12 @@ class FunctionNode{
     /**
      * FunctionNode next - ссылка на следующий элемент
      * FunctionNode previous - ссылка на предыдущий элемент
-     * FunctionPoint_4 point - информационное поле для хранения данных типа FunctionPoint_4
+     * FunctionPoint point - информационное поле для хранения данных типа FunctionPoint
      * */
 
     public FunctionNode next;
     public FunctionNode previous;
-    public FunctionPoint_4 point;
+    public FunctionPoint point;
 
 
     /**

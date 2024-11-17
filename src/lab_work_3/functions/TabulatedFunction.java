@@ -8,14 +8,14 @@ public interface TabulatedFunction {
 
     double getFunctionValue(double x);
 
-    FunctionPoint_3 getPoint(int index);
+    FunctionPoint getPoint(int index);
     double getPointX(int index);
     double getPointY(int index);
 
-    void setPoint(int index, FunctionPoint_3 point) throws InappropriateFunctionPointException;
+    void setPoint(int index, FunctionPoint point) throws InappropriateFunctionPointException;
     void setPointX(int index, double x) throws InappropriateFunctionPointException;
     void setPointY(int index, double y);
 
-    void addPoint(FunctionPoint_3 point) throws InappropriateFunctionPointException;
+    void addPoint(FunctionPoint point) throws InappropriateFunctionPointException;
     void deletePoint(int index);
 }

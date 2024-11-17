@@ -3,10 +3,10 @@ package lab_work_4.functions;
 import java.io.Serializable;
 
 /**
- * Класс FunctionPoint_4.
+ * Класс FunctionPoint.
  * Объекты данного класса описывают одну точку табулированной функции
  * */
-public class FunctionPoint_4 implements Serializable {
+public class FunctionPoint implements Serializable {
 
     /**
      * Поскольку точка функции описывается двумя координатами:
@@ -21,9 +21,9 @@ public class FunctionPoint_4 implements Serializable {
     private double y;
 
     /**
-     * Опишем методы доступа и модификации объектов класса FunctionPoint_4
-     * Методами доступа являются методы get. Они позволяют получить значения атрибутов класса FunctionPoint_4, входные параметры отсутствуют
-     * Методы set - методы модификации. Они позволяют изменить значения атрибутов класса FunctionPoint_4.
+     * Опишем методы доступа и модификации объектов класса FunctionPoint
+     * Методами доступа являются методы get. Они позволяют получить значения атрибутов класса FunctionPoint, входные параметры отсутствуют
+     * Методы set - методы модификации. Они позволяют изменить значения атрибутов класса FunctionPoint.
      * На вход set-методы принимают значения, которые необходимо присвоить атрибуту объекта.
      * */
 
@@ -52,33 +52,33 @@ public class FunctionPoint_4 implements Serializable {
     }
 
     /**
-     * Опишем конструкторы класса FunctionPoint_4
+     * Опишем конструкторы класса FunctionPoint
      * */
 
     /**
-     *  Конструктор FunctionPoint_4(double x, double y) осуществляет создание и инициализацию объекта типа FunctionPoint_4.
+     *  Конструктор FunctionPoint(double x, double y) осуществляет создание и инициализацию объекта типа FunctionPoint.
      *  Инициализацию объекта производим входными значениями из конструктора, для установки значения используем ранее описанные set-методы
      * */
-    public FunctionPoint_4(double x, double y){
+    public FunctionPoint(double x, double y){
         setX(x);
         setY(y);
     }
 
     /**
-     *  Конструктор FunctionPoint_4(FunctionPoint_4 point) осуществляет создание и инициализацию объекта типа FunctionPoint_4.
+     *  Конструктор FunctionPoint(FunctionPoint point) осуществляет создание и инициализацию объекта типа FunctionPoint.
      *  Инициализацию объекта производим используя данные входного объекта.
      *  Для этого вначале получаем значения при помощи get-методов, а далее инициализируем наш объект используя set-методы
      * */
-    public FunctionPoint_4(FunctionPoint_4 point){
+    public FunctionPoint(FunctionPoint point){
         setX(point.getX());
         setY(point.getY());
     }
 
     /**
-     *  Конструктор FunctionPoint_4() осуществляет создание и инициализацию объекта типа FunctionPoint_4.
+     *  Конструктор FunctionPoint() осуществляет создание и инициализацию объекта типа FunctionPoint.
      *  Инициализацию объекта производим используя нулевые значения.
      * */
-    public FunctionPoint_4(){
+    public FunctionPoint(){
         setX(0);
         setY(0);
     }
@@ -86,7 +86,7 @@ public class FunctionPoint_4 implements Serializable {
     /**
      * Расчет значения функции по прямой
      * */
-    public static double getValueOnLine(FunctionPoint_4 left, FunctionPoint_4 right, double x){
+    public static double getValueOnLine(FunctionPoint left, FunctionPoint right, double x){
         if(Double.compare(x, left.getX()) == -1 || Double.compare(x, right.getX()) ==1)
         {
             return Double.NaN;

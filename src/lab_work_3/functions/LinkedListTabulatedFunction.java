@@ -42,11 +42,11 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
         // Заполним функцию следующим образом
         double step = (rightX - leftX) / (pointsCount - 1);
         for (int i = 0; i < pointsCount - 1; i++) {
-            addNodeToTail().point = new FunctionPoint_3(leftX, 0);
+            addNodeToTail().point = new FunctionPoint(leftX, 0);
             leftX += step;
         }
         // Добавим конечный элемент
-        addNodeToTail().point = new FunctionPoint_3(rightX, 0);
+        addNodeToTail().point = new FunctionPoint(rightX, 0);
     }
 
     /**
@@ -74,11 +74,11 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
         // Заполним функцию следующим образом
         double step = (rightX - leftX) / (pointsCount - 1);
         for (int i = 0; i < pointsCount - 1; i++) {
-            addNodeToTail().point = new FunctionPoint_3(leftX, values[i]);
+            addNodeToTail().point = new FunctionPoint(leftX, values[i]);
             leftX += step;
         }
         // Добавим конечный элемент
-        addNodeToTail().point = new FunctionPoint_3(rightX, values[pointsCount - 1]);
+        addNodeToTail().point = new FunctionPoint(rightX, values[pointsCount - 1]);
     }
 
     /**
@@ -159,7 +159,7 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
             FunctionNode current = head.next;
             for (int i = 0; i < pointsCount - 1; i++) {
                 if (Double.compare(x, current.point.getX()) >= 0 && Double.compare(x, current.next.point.getX()) <= 0) {
-                    return FunctionPoint_3.getValueOnLine(current.point, current.next.point, x);
+                    return FunctionPoint.getValueOnLine(current.point, current.next.point, x);
                 }
                 current = current.next;
             }
@@ -167,11 +167,11 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
         return Double.NaN;
     }
 
-    public FunctionPoint_3 getPoint(int index) {
+    public FunctionPoint getPoint(int index) {
         if (index < 0 || index >= pointsCount) {
             throw new FunctionPointIndexOutOfBoundsException("Такого элемента не существует!", index);
         }
-        return new FunctionPoint_3(getNodeByIndex(index).point);
+        return new FunctionPoint(getNodeByIndex(index).point);
     }
 
     public double getPointX(int index) {
@@ -188,7 +188,7 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
         return getNodeByIndex(index).point.getY();
     }
 
-    public void setPoint(int index, FunctionPoint_3 point) throws InappropriateFunctionPointException {
+    public void setPoint(int index, FunctionPoint point) throws InappropriateFunctionPointException {
         if (index < 0 || index >= pointsCount) {
             throw new FunctionPointIndexOutOfBoundsException("Такого элемента не существует!", index);
         }
@@ -231,7 +231,7 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
         getNodeByIndex(index).point.setY(y);
     }
 
-    public void addPoint(FunctionPoint_3 point) throws InappropriateFunctionPointException {
+    public void addPoint(FunctionPoint point) throws InappropriateFunctionPointException {
         if (Double.compare(point.getX(), getLeftDomainBorder()) == -1 ) {
             addNodeByIndex(0).point = point;
             pointsCount++;
@@ -280,7 +280,7 @@ public class LinkedListTabulatedFunction implements TabulatedFunction {
 
 /**
  * Опишем класс элементов списка FunctionNode
- * Класс содержит информационное поле для хранения данных типа FunctionPoint_3
+ * Класс содержит информационное поле для хранения данных типа FunctionPoint
  * А также поля для хранения ссылок на предыдущий и следующий элемент.
  * Выберите и обоснуйте место описания класса и его видимость.
  * Также выберите и обоснуйте реализацию инкапсуляции в этом классе
@@ -290,12 +290,12 @@ class FunctionNode{
     /**
      * FunctionNode next - ссылка на следующий элемент
      * FunctionNode previous - ссылка на предыдущий элемент
-     * FunctionPoint_3 point - информационное поле для хранения данных типа FunctionPoint_3
+     * FunctionPoint point - информационное поле для хранения данных типа FunctionPoint
      * */
 
     public FunctionNode next;
     public FunctionNode previous;
-    public FunctionPoint_3 point;
+    public FunctionPoint point;
 
 
     /**

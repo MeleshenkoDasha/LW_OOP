@@ -10,11 +10,11 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Serializable, 
 
     /**
      * Опишем атрибуты класса ArrayTabulatedFunction
-     * FunctionPoint_4[] points - описывает массив точек FunctionPoint_4
+     * FunctionPoint[] points - описывает массив точек FunctionPoint
      * pointsCount - описывает количество точек в массиве
      * expandSize - шаг приращения массива точек
      * */
-    private FunctionPoint_4[] points;
+    private FunctionPoint[] points;
     private int pointsCount;
     private static final int expandSize=100;
 
@@ -40,15 +40,15 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Serializable, 
         }
         // определим шаг приращения по оси X
         double step=(rightX-leftX)/(pointsCount-1);
-        // создадим массив точек FunctionPoint_4
-        points=new FunctionPoint_4[pointsCount+expandSize];
+        // создадим массив точек FunctionPoint
+        points=new FunctionPoint[pointsCount+expandSize];
         // заполним его на длину pointsCount
         for(int i=0;i<pointsCount-1;i++){
-            points[i]=new FunctionPoint_4(leftX,0);
+            points[i]=new FunctionPoint(leftX,0);
             leftX+=step;
         }
         // заполним последнее значение
-        points[pointsCount-1]=new FunctionPoint_4(rightX,0);
+        points[pointsCount-1]=new FunctionPoint(rightX,0);
     }
 
     /**
@@ -69,22 +69,22 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Serializable, 
         }
         // определим шаг приращения по оси X
         double step=(rightX-leftX)/(pointsCount-1);
-        // создадим массив точек FunctionPoint_4
-        points=new FunctionPoint_4[pointsCount+100];
+        // создадим массив точек FunctionPoint
+        points=new FunctionPoint[pointsCount+100];
         // заполним его на длину pointsCount
         for(int i=0;i<pointsCount-1;i++){
-            points[i]=new FunctionPoint_4(leftX,values[i]);
+            points[i]=new FunctionPoint(leftX,values[i]);
             leftX+=step;
         }
         // заполним последнее значение
-        points[pointsCount-1]=new FunctionPoint_4(rightX,values[pointsCount-1]);
+        points[pointsCount-1]=new FunctionPoint(rightX,values[pointsCount-1]);
     }
 
     /**
-     * ArrayTabulatedFunction(FunctionPoint_4[] points)
+     * ArrayTabulatedFunction(FunctionPoint[] points)
      * Конструктор, получающий сразу все точки функции в виде массива объектов типа FunctionPoint
      * */
-    public ArrayTabulatedFunction(FunctionPoint_4[] points){
+    public ArrayTabulatedFunction(FunctionPoint[] points){
         // Определяем количесто точек функции.
         this.pointsCount=points.length;
         // Проверяем, что точек достаточно для работы
@@ -92,16 +92,16 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Serializable, 
             throw new IllegalArgumentException("pointsCount("+pointsCount+") must be greater than 1");
         }
         // Создаем массив точек
-        this.points=new FunctionPoint_4[pointsCount];
+        this.points=new FunctionPoint[pointsCount];
         for(int i=0;i<pointsCount-1;i++){
             // Проверяем корректность задания точек
             if(Double.compare(points[i].getX(), points[i+1].getX())>= 0){
                 throw new IllegalArgumentException("Аргумент справа("+points[i+1].getX()+") должен быть больше аргумента слева("+points[i].getX()+")");
             }
             // если все хорошо записали полученную точук
-            this.points[i]=new FunctionPoint_4(points[i]);
+            this.points[i]=new FunctionPoint(points[i]);
         }
-        this.points[pointsCount-1]=new FunctionPoint_4(points[pointsCount-1]);
+        this.points[pointsCount-1]=new FunctionPoint(points[pointsCount-1]);
     }
     
 
@@ -141,7 +141,7 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Serializable, 
                 // проверяем, что точка лежит между соседними точками
                 if(Double.compare(value, points[i].getX()) >= 0 && Double.compare(value, points[i+1].getX())<=0){
                     // если все получилось считаем значение
-                    return FunctionPoint_4.getValueOnLine(points[i],points[i+1],value);
+                    return FunctionPoint.getValueOnLine(points[i],points[i+1],value);
                 }
             }
         }
@@ -152,7 +152,7 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Serializable, 
     /**
      * Метод FunctionPoint getPoint(int index) возвращает ссылку на объект, описывающий точку, имеющую указанный номер.
      * */
-    public FunctionPoint_4 getPoint(int index){
+    public FunctionPoint getPoint(int index){
         // проверяем что индекс указан верно
         if(index<0 || index>=pointsCount){
             throw  new FunctionPointIndexOutOfBoundsException("Такого элемента не существует!",index);
@@ -183,11 +183,11 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Serializable, 
     }
 
     /**
-     * Метод void setPoint(int index, FunctionPoint_4 point) заменяет указанную точку табулированной функции на заданную.
+     * Метод void setPoint(int index, FunctionPoint point) заменяет указанную точку табулированной функции на заданную.
      * Для функции, определяемой точками {(0; 0), (1; 1), (2; 4)}, точку с индексом 1 нельзя заменить точкой (-1; 5).
      * Однако точку с индексом 0 уже можно заменить.
      * */
-    public void setPoint(int index, FunctionPoint_4 point) throws InappropriateFunctionPointException {
+    public void setPoint(int index, FunctionPoint point) throws InappropriateFunctionPointException {
         // проверяем что индекс лежит внутри области определения
         if(index<0 || index>=pointsCount){
             throw  new FunctionPointIndexOutOfBoundsException("Такого элемента не существует!",index);
@@ -260,7 +260,7 @@ public class ArrayTabulatedFunction implements TabulatedFunction, Serializable, 
     /**
      * Метод addPoint(FunctionPoint point) добавляет новую точку табулированной функции.
      * */
-    public void addPoint(FunctionPoint_4 point) throws InappropriateFunctionPointException {
+    public void addPoint(FunctionPoint point) throws InappropriateFunctionPointException {
         // проверяем лежит ли добавляемая точка левее левой границ области определения
         if(Double.compare(point.getX(), getLeftDomainBorder()) == -1)
         {
