@@ -1,10 +1,5 @@
-package lab_work_4;/*import lab_work_2.functions.FunctionPoint;
-import lab_work_2.functions.TabulatedFunction;
+package lab_work_4;
 
-import lab_work_3.functions.FunctionPoint_3;
-import lab_work_3.functions.ArrayTabulatedFunction;
-import lab_work_3.functions.LinkedListTabulatedFunction;
-*/
 import lab_work_4.functions.*;
 import lab_work_4.functions.basic.*;
 
@@ -106,13 +101,6 @@ public class Main_lab_work_4 {
         System.out.println("========================" + "tabulated_exp после чтения из файла" + "=========================");
 
         System.out.println("#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-##-#-#-#-#-#-#-#");
-
-
-
-
-
-
-
 
         System.out.println("Задание 8.5");
         System.out.println("Задание 8.5.1: Создайте табулированный аналог логарифма по натуральному основанию на отрезке от 0 до 10 с 11 точками");
